@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @bank_billet %>
+
+<div>
+  <%= link_to "Edit this bank billet", edit_bank_billet_path(@bank_billet) %> |
+  <%= link_to "Back to bank billets", bank_billets_path %>
+
+  <%= button_to "Destroy this bank billet", @bank_billet, method: :delete %>
+</div>

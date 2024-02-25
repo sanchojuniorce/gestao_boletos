@@ -1,0 +1,111 @@
+<%= form_with(model: bank_billet) do |form| %>
+  <% if bank_billet.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(bank_billet.errors.count, "error") %> prohibited this bank_billet from being saved:</h2>
+
+      <ul>
+        <% bank_billet.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :customer_person_name, style: "display: block" %>
+    <%= form.text_field :customer_person_name, required: true, value: "aaaaa" %>
+  </div>
+
+  <div>
+    <%= form.label :customer_cnpj_cpf, style: "display: block" %>
+    <%= form.text_field :customer_cnpj_cpf, required: true, value: "02.180.304/0001-03" %>
+  </div>
+
+  <div>
+    <%= form.label :customer_zipcode, style: "display: block" %>
+    <%= form.text_field :customer_zipcode, required: true, value: "68909-814" %>
+  </div>
+
+  <div>
+    <%= form.label :expire_at, style: "display: block" %>
+    <%= form.date_field :expire_at, required: true, value: "27/02/2024" %>
+  </div>
+
+  <div>
+    <%= form.label :customer_address, style: "display: block" %>
+    <%= form.text_field :customer_address, required: true, value: "Avenida Ana Maria das Graças Picanço" %>
+  </div>
+
+  <div>
+    <%= form.label :customer_neighborhood, style: "display: block" %>
+    <%= form.text_field :customer_neighborhood, required: true, value: "Novo Horizonte" %>
+  </div>
+
+  <div>
+    <%= form.label :customer_city_name, style: "display: block" %>
+    <%= form.text_field :customer_city_name, required: true, value: "Macapá" %>
+  </div>
+
+  <div>
+    <%= form.label :customer_state, style: "display: block" %>
+    <%= form.text_field :customer_state, required: true, vale: "AP" %>
+  </div>
+
+  <div>
+    <%= form.label :interest_type, style: "display: block" %>
+    <%= form.select :interest_type, options_for_select(@interest_types, 0), required: true %>
+  </div>
+
+  <div>
+    <%= form.label :interest_days_type, style: "display: block" %>
+    <%= form.select :interest_days_type, options_for_select(@interest_days_types, 0), required: true %>
+  </div>
+
+  <div>
+    <%= form.label :fine_type, style: "display: block" %>
+    <%= form.select :fine_type, options_for_select(@fine_types, 0), required: true %>
+  </div>
+
+  <div>
+    <%= form.label :discount_type, style: "display: block" %>
+    <%= form.select :discount_type, options_for_select(@discount_types, 0), required: true %>
+  </div>
+
+  <div>
+    <%= form.label :charge_type, style: "display: block" %>
+    <%= form.select :charge_type, options_for_select(@charge_types, 1), required: true %>
+  </div>
+
+  <div>
+    <%= form.label :dispatch_type, style: "display: block" %>
+    <%= form.select :dispatch_type, options_for_select(@dispatch_types, 1), required: true %>
+  </div>
+
+  <div>
+    <%= form.label :document_type, style: "display: block" %>
+    <%= form.select :document_type, options_for_select(@document_types, "02"), required: true %>
+  </div>
+
+  <div>
+    <%= form.label :acceptance, style: "display: block" %>
+    <%= form.select :acceptance, options_for_select(@acceptances, "N"), required: true %>
+  </div>
+
+  <div>
+    <%= form.label :instructions_mode, style: "display: block" %>
+    <%= form.select :instructions_mode, options_for_select(@instructions_modes, 1), required: true %>
+  </div>
+  <%= form.hidden_field :ignore_email, value: false %>
+  <%= form.hidden_field :ignore_sms, value: false %>
+  <%= form.hidden_field :ignore_whatsapp, value: false %>
+  <%= form.hidden_field :prevent_pix, value: false %>
+
+  <div>
+    <%= form.label :amount, style: "display: block" %>
+    <%= form.number_field :amount %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
