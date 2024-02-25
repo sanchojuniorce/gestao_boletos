@@ -13,52 +13,47 @@
 
   <div>
     <%= form.label :customer_person_name, style: "display: block" %>
-    <%= form.text_field :customer_person_name, required: true, value: "aaaaa" %>
+    <%= form.text_field :customer_person_name, required: true %>
   </div>
 
   <div>
     <%= form.label :customer_cnpj_cpf, style: "display: block" %>
-    <%= form.text_field :customer_cnpj_cpf, required: true, value: "02.180.304/0001-03" %>
+    <%= form.text_field :customer_cnpj_cpf, required: true %>
   </div>
 
   <div>
     <%= form.label :customer_zipcode, style: "display: block" %>
-    <%= form.text_field :customer_zipcode, required: true, value: "68909-814" %>
+    <%= form.text_field :customer_zipcode, required: true %>
   </div>
 
   <div>
     <%= form.label :expire_at, style: "display: block" %>
-    <%= form.date_field :expire_at, required: true, value: "27/02/2024" %>
+    <%= form.date_field :expire_at, required: true %>
   </div>
 
   <div>
     <%= form.label :customer_address, style: "display: block" %>
-    <%= form.text_field :customer_address, required: true, value: "Avenida Ana Maria das Graças Picanço" %>
+    <%= form.text_field :customer_address, required: true %>
   </div>
 
   <div>
     <%= form.label :customer_neighborhood, style: "display: block" %>
-    <%= form.text_field :customer_neighborhood, required: true, value: "Novo Horizonte" %>
+    <%= form.text_field :customer_neighborhood, required: true %>
   </div>
 
   <div>
     <%= form.label :customer_city_name, style: "display: block" %>
-    <%= form.text_field :customer_city_name, required: true, value: "Macapá" %>
+    <%= form.text_field :customer_city_name, required: true %>
   </div>
 
   <div>
     <%= form.label :customer_state, style: "display: block" %>
-    <%= form.text_field :customer_state, required: true, vale: "AP" %>
+    <%= form.text_field :customer_state, required: true %>
   </div>
 
   <div>
     <%= form.label :interest_type, style: "display: block" %>
     <%= form.select :interest_type, options_for_select(@interest_types, 0), required: true %>
-  </div>
-
-  <div>
-    <%= form.label :interest_days_type, style: "display: block" %>
-    <%= form.select :interest_days_type, options_for_select(@interest_days_types, 0), required: true %>
   </div>
 
   <div>

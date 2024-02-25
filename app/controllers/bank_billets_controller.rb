@@ -31,17 +31,9 @@ class BankBilletsController < ApplicationController
   # POST /bank_billets or /bank_billets.json
   def create
     @bank_billet = BankBillet.create_bank(bank_billet_params)
-    # @bank_billet = BankBillet.new(bank_billet_params)
-
-    # respond_to do |format|
-    #   if @bank_billet.save
-    #     format.html { redirect_to bank_billet_url(@bank_billet), notice: "Bank billet was successfully created." }
-    #     format.json { render :show, status: :created, location: @bank_billet }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @bank_billet.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      format.html { redirect_to bank_billets_path, notice: "Bank billet was successfully created." }
+    end  
   end
 
   # PATCH/PUT /bank_billets/1 or /bank_billets/1.json
