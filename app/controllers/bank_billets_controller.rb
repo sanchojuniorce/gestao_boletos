@@ -1,5 +1,5 @@
 class BankBilletsController < ApplicationController
-  before_action :set_bank_billet, only: %i[ show edit update destroy ]
+  before_action :set_bank_billet, only: %i[ show edit update destroy new]
 
   # GET /bank_billets or /bank_billets.json
   def index
@@ -13,15 +13,6 @@ class BankBilletsController < ApplicationController
   # GET /bank_billets/new
   def new
     @bank_billet = BankBillet.new
-    @interest_types = [["Inexistente",0],["Para porcentagem diária",1],["Para valor diário",2]]
-    @interest_days_types = [["Corridos",0],["Úteis",1]]
-    @fine_types = [["Inexistente",0],["Para percentual do valor do boleto",1],["Para valor fixo",2]]
-    @discount_types = [["Inexistente",0],["Para valor fixo",1],["Para percentual do valor do boleto",2]]
-    @charge_types = [["Simples",1],["Vinculada",2],["Descontada",3],["Vendor",4]]
-    @dispatch_types = [["Cliente",1],["Banco",2]]
-    @document_types = BankBillet.document_types
-    @acceptances = [["Não","N"],["Sim","S"]]
-    @instructions_modes = [["Não preencher as instruções para o caixa",0],["Calcular data pela via de registro (API/CNAB)",1],["Usar a data configurada no boleto",2]]
   end
 
   # GET /bank_billets/1/edit
@@ -62,7 +53,18 @@ class BankBilletsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bank_billet
-      @bank_billet = BankBillet.find(params[:id])
+      if params[:action] != 'new'
+        @bank_billet = BankBillet.find(params[:id])
+      end  
+      @interest_types = [["Inexistente",0],["Para porcentagem diária",1],["Para valor diário",2]]
+      @interest_days_types = [["Corridos",0],["Úteis",1]]
+      @fine_types = [["Inexistente",0],["Para percentual do valor do boleto",1],["Para valor fixo",2]]
+      @discount_types = [["Inexistente",0],["Para valor fixo",1],["Para percentual do valor do boleto",2]]
+      @charge_types = [["Simples",1],["Vinculada",2],["Descontada",3],["Vendor",4]]
+      @dispatch_types = [["Cliente",1],["Banco",2]]
+      @document_types = BankBillet.document_types
+      @acceptances = [["Não","N"],["Sim","S"]]
+      @instructions_modes = [["Não preencher as instruções para o caixa",0],["Calcular data pela via de registro (API/CNAB)",1],["Usar a data configurada no boleto",2]]
     end
 
     # Only allow a list of trusted parameters through.
