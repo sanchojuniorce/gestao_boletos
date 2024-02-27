@@ -29,15 +29,10 @@ class BankBilletsController < ApplicationController
 
   # PATCH/PUT /bank_billets/1 or /bank_billets/1.json
   def update
+    @bank_billet = BankBillet.update_bank(bank_billet_params)
     respond_to do |format|
-      if @bank_billet.update(bank_billet_params)
-        format.html { redirect_to bank_billet_url(@bank_billet), notice: "Bank billet was successfully updated." }
-        format.json { render :show, status: :ok, location: @bank_billet }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @bank_billet.errors, status: :unprocessable_entity }
-      end
-    end
+      format.html { redirect_to bank_billets_path, notice: "Bank billet was successfully updated." }
+    end  
   end
 
   # DELETE /bank_billets/1 or /bank_billets/1.json
@@ -54,7 +49,7 @@ class BankBilletsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bank_billet
       if params[:action] != 'new'
-        @bank_billet = BankBillet.find(params[:id])
+        @bank_billets_api = BankBillet.edit_bank(params[:id])
       end  
       @interest_types = [["Inexistente",0],["Para porcentagem diária",1],["Para valor diário",2]]
       @interest_days_types = [["Corridos",0],["Úteis",1]]

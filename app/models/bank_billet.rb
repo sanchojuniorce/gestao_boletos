@@ -14,6 +14,18 @@ class BankBillet < ApplicationRecord
     JSON.parse(response.read_body)
   end 
 
+  def self.edit_bank(params_id)
+    url = url_service("/bank_billets/#{params_id}")
+    response = http_service(url, 'get', params_id)
+    JSON.parse(response.read_body)
+  end 
+
+  def update_bank(params)
+    url = url_service("/bank_billets/#{params_id}")
+    response = http_service(url, 'put', params_id)
+    JSON.parse(response.read_body)
+  end  
+
   def self.url_service(url_endpoint)
     URI("#{ENV.fetch("KOBANA_ENDPOINT")}/#{url_endpoint}")
   end  
@@ -21,17 +33,34 @@ class BankBillet < ApplicationRecord
   def self.http_service(url, type_request, params)
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
-
-    request = type_request == 'get' ? Net::HTTP::Get.new(url) : Net::HTTP::Post.new(url)
+    
+    request = request_service(url, type_request)
     request["accept"] = 'application/json'
     request["content-type"] = 'application/json'
     request["authorization"] = "Bearer #{ENV['KOBANA_TOKEN']}"
+    
+    request_http_service(type_request, params, http, request)
+    #retorno
+  end  
+
+  def self.request_service(url, type_request)
+    if type_request == 'get'
+      request = Net::HTTP::Get.new(url)
+    elsif type_request == 'post'
+      request = Net::HTTP::Post.new(url)
+    elsif type_request == 'put'  
+      request = Net::HTTP::Put.new(url)
+    end  
+    request
+  end  
+
+  def self.request_http_service(type_request, params, http, request)
     if type_request == 'get' 
       retorno = http.request(request)
-    elsif type_request == 'post' and params.present?
+    elsif ['post', 'put'].include?(type_request) and params.present?
       request.body = params.to_json
       retorno = http.request(request)
-    end    
+    end
     retorno
   end  
 

@@ -1,94 +1,112 @@
 <%= form_with(model: bank_billet) do |form| %>
-  <% if bank_billet.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(bank_billet.errors.count, "error") %> prohibited this bank_billet from being saved:</h2>
+  <% if params[:action] == "new" %>
+    <% if bank_billet.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(bank_billet.errors.count, "error") %> prohibited this bank_billet from being saved:</h2>
 
-      <ul>
-        <% bank_billet.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+          <% bank_billet.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>  
 
   <div>
     <%= form.label :customer_person_name, style: "display: block" %>
-    <%= form.text_field :customer_person_name, required: true %>
+    <% value_customer_person_name = @bank_billets_api["customer_person_name"] rescue "" %>
+    <%= form.text_field :customer_person_name, required: true, value: value_customer_person_name %>
   </div>
 
   <div>
     <%= form.label :customer_cnpj_cpf, style: "display: block" %>
-    <%= form.text_field :customer_cnpj_cpf, required: true %>
+    <% value_customer_cnpj_cpf = @bank_billets_api["customer_cnpj_cpf"] rescue "" %>
+    <%= form.text_field :customer_cnpj_cpf, required: true, value: value_customer_cnpj_cpf %>
   </div>
 
   <div>
     <%= form.label :customer_zipcode, style: "display: block" %>
-    <%= form.text_field :customer_zipcode, required: true %>
+    <% value_customer_zipcode = @bank_billets_api["customer_zipcode"] rescue "" %>
+    <%= form.text_field :customer_zipcode, required: true, value: value_customer_zipcode %>
   </div>
 
   <div>
     <%= form.label :expire_at, style: "display: block" %>
-    <%= form.date_field :expire_at, required: true %>
+    <% value_expire_at = @bank_billets_api["expire_at"] rescue "" %>
+    <%= form.date_field :expire_at, required: true, value: value_expire_at %>
   </div>
 
   <div>
     <%= form.label :customer_address, style: "display: block" %>
-    <%= form.text_field :customer_address, required: true %>
+    <% value_customer_address = @bank_billets_api["customer_address"] rescue "" %>
+    <%= form.text_field :customer_address, required: true, value: value_customer_address %>
   </div>
 
   <div>
     <%= form.label :customer_neighborhood, style: "display: block" %>
-    <%= form.text_field :customer_neighborhood, required: true %>
+    <% value_customer_neighborhood = @bank_billets_api["customer_neighborhood"] rescue "" %>
+    <%= form.text_field :customer_neighborhood, required: true, value: value_customer_neighborhood %>
   </div>
 
   <div>
     <%= form.label :customer_city_name, style: "display: block" %>
-    <%= form.text_field :customer_city_name, required: true %>
+    <% value_customer_city_name = @bank_billets_api["customer_city_name"] rescue "" %>
+    <%= form.text_field :customer_city_name, required: true, value: value_customer_city_name %>
   </div>
 
   <div>
     <%= form.label :customer_state, style: "display: block" %>
-    <%= form.text_field :customer_state, required: true %>
+    <% value_customer_state = @bank_billets_api["customer_state"] rescue "" %>
+    <%= form.text_field :customer_state, required: true, value: value_customer_state %>
   </div>
 
   <div>
     <%= form.label :interest_type, style: "display: block" %>
-    <%= form.select :interest_type, options_for_select(@interest_types, 0), required: true %>
+    <% value_interest_type = @bank_billets_api["interest_type"] rescue "" %>
+    <%= form.select :interest_type, options_for_select(@interest_types, 0), required: true, value: value_interest_type %>
   </div>
 
   <div>
     <%= form.label :fine_type, style: "display: block" %>
-    <%= form.select :fine_type, options_for_select(@fine_types, 0), required: true %>
+    <% value_fine_type = @bank_billets_api["fine_type"] rescue "" %>
+    <%= form.select :fine_type, options_for_select(@fine_types, 0), required: true, value: value_fine_type %>
   </div>
 
   <div>
     <%= form.label :discount_type, style: "display: block" %>
-    <%= form.select :discount_type, options_for_select(@discount_types, 0), required: true %>
+    <% value_discount_type = @bank_billets_api["discount_type"] rescue "" %>
+    <%= form.select :discount_type, options_for_select(@discount_types, 0), required: true, value: value_discount_type %>
   </div>
 
   <div>
     <%= form.label :charge_type, style: "display: block" %>
-    <%= form.select :charge_type, options_for_select(@charge_types, 1), required: true %>
+    <% value_charge_type = @bank_billets_api["charge_type"] rescue "" %>
+    <%= form.select :charge_type, options_for_select(@charge_types, 1), required: true, value: value_charge_type %>
   </div>
 
   <div>
     <%= form.label :dispatch_type, style: "display: block" %>
-    <%= form.select :dispatch_type, options_for_select(@dispatch_types, 1), required: true %>
+    <% value_dispatch_type = @bank_billets_api["dispatch_type"] rescue "" %>
+    <%= form.select :dispatch_type, options_for_select(@dispatch_types, 1), required: true, value: value_dispatch_type %>
   </div>
 
   <div>
     <%= form.label :document_type, style: "display: block" %>
-    <%= form.select :document_type, options_for_select(@document_types, "02"), required: true %>
+    <% value_document_type = @bank_billets_api["document_type"] rescue "" %>
+    <%= form.select :document_type, options_for_select(@document_types, "02"), required: true, value: value_document_type %>
   </div>
 
   <div>
     <%= form.label :acceptance, style: "display: block" %>
-    <%= form.select :acceptance, options_for_select(@acceptances, "N"), required: true %>
+    <% value_acceptance = @bank_billets_api["acceptance"] rescue "" %>
+    <%= form.select :acceptance, options_for_select(@acceptances, "N"), required: true, value: value_acceptance %>
   </div>
 
   <div>
     <%= form.label :instructions_mode, style: "display: block" %>
-    <%= form.select :instructions_mode, options_for_select(@instructions_modes, 1), required: true %>
+    <% value_instructions_mode = @bank_billets_api["instructions_mode"] rescue "" %>
+    <%= form.select :instructions_mode, options_for_select(@instructions_modes, 1), required: true, value: value_instructions_mode %>
   </div>
   <%= form.hidden_field :ignore_email, value: false %>
   <%= form.hidden_field :ignore_sms, value: false %>
@@ -97,7 +115,8 @@
 
   <div>
     <%= form.label :amount, style: "display: block" %>
-    <%= form.number_field :amount %>
+    <% value_amount = @bank_billets_api["amount"] rescue "" %>
+    <%= form.number_field :amount, value: value_amount %>
   </div>
 
   <div>
