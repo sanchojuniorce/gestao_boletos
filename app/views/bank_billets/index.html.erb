@@ -5,14 +5,14 @@
 <div id="bank_billets">
   <table style="width:100%" border="1">
     <tr>
-      <td>ID</td>
-      <td>CLIENT</td>
-      <td>CPF/CNPJ</td>
-      <td>ENDEREÇO</td>
-      <td>ESTADO</td>
-      <td>CIDADE</td>
-      <td>VALOR</td>
-      <td>URL</td>
+      <th>ID</th>
+      <th>CLIENT</th>
+      <th>CPF/CNPJ</th>
+      <th>ENDEREÇO</th>
+      <th>ESTADO</th>
+      <th>CIDADE</th>
+      <th>VALOR</th>
+      <th scope="col" colspan="3">Ações</th>
     <tr>
     <% @bank_billets.each do |bank_billet| %>
       <tr>
@@ -24,7 +24,11 @@
         <td><%= bank_billet["customer_state"] %></td>
         <td><%= bank_billet["customer_city_name"] %></td>
         <td><%= number_to_currency(bank_billet["amount"]) %></td>
-        <td><%= link_to "view", bank_billet["url"], target: "_blank" %></td>
+        <td>
+          <%= link_to "editar", edit_bank_billet_path(bank_billet["id"]), target: "_blank" %>
+          <%= link_to "view", bank_billet["url"], target: "_blank" %>
+          <%= link_to "cancelar", bank_billet["url"], target: "_blank" %>
+        </td>
         <!-- <p>
           <%= link_to "Show this bank billet", bank_billet %>
         </p> !-->
